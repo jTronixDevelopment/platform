@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
-import { FormGroup, Form, FormFeedback, Input ,Label ,Container, Card, Button, CardHeader, CardBody,
-  CardTitle } from 'reactstrap';
-import { connect } from 'react-redux'
+import { FormGroup, Form, FormFeedback, Input ,Label ,Container,
+  Card, Button, CardHeader, CardBody, CardTitle } from 'reactstrap';
+// import { connect } from 'react-redux';
 
-import FBLogin from './../icons/facebook.png';
-import './signin.css'
+import FBLoginIcon from './../icons/facebook.png';
+
+import Auth from './../../firebase/Auth/Auth';
 
 import { Link, Redirect } from 'react-router-dom';
 
+import './signin.css'
+
 export default class App extends Component {
 
-  constructor(auth){
-    super(auth);
-    this.auth = this.props.auth;
+  constructor(props){
+    super(props);
+    this.auth = new Auth();
     this.saveFireBase = this.props.saveFireBase;
     this.state = {
       emailError : "Check Email",
@@ -21,7 +24,7 @@ export default class App extends Component {
   }
 
   isValidEmail(email){
-    return /^\w+([-+.']\ w+)*@\w+([-. ]\w+)*\.\w+([-. ]\w+)*$/.test(email)?true:false;
+    return new RegExp(/^\w+([-+.'] w+)*@\w+([-. ]\w+)*\.\w+([-. ]\w+)*$/).test(email)?true:false;
   }
 
   signInUser(){
@@ -52,7 +55,8 @@ export default class App extends Component {
       email : document.getElementById('signInEmail').value,
       password : document.getElementById('signInPassword').value,
       errorHandler : this.errorHandler.bind(this),
-      successHandler : this.successHandler.bind(this)
+      successHandler : this.successHandler.bind(this),
+      firebase: this.props.firebase
     }
   }
 
@@ -61,7 +65,7 @@ export default class App extends Component {
   }
 
   successHandler(){
-    this.saveFireBase(this.auth.firebase);
+    this.saveFireBase(this.props.firebase);
     console.log("cool")
     this.setState({ loggedIn:true })
   }
@@ -97,7 +101,10 @@ export default class App extends Component {
             <p className='text-center'>
             -or-
             </p>
-            <Button block className='fb-icon text-center'><img className='icon' src={ FBLogin }/> Login With Facebook</Button>
+            <Button block className='fb-icon text-center'>
+              <img alt='fbLogIn' className='icon' src={ FBLoginIcon }/>
+              Login With Facebook
+            </Button>
             <hr/>
             <p>Not a member?<Link to={'/signup'}>Click here!</Link></p>
           </CardBody>

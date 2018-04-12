@@ -1,24 +1,39 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import './profile.css';
 
-import Map from './profilecomponents/map/map'
-import UserInfo from './profilecomponents/userinfo/userinfo'
+//=== Classes ==================================================================
+// import Storage from './../../firebase/CloudStorage/CloudStorage';
 
-export default class App extends Component {
+//=== Components ===============================================================
+import UserInfo from './ProfileComponents/UserInfo/UserInfo';
+import ProfileFeed from './ProfileComponents/ProfileFeed/ProfileFeed';
 
-  componentDidMount(){
-    fetch("https://randomuser.me/api/")
-    .then(res => res.json())
-    .then((data)=>{
-      console.log(data)
-    }).catch((err)=>{
-      console.log(err)
+//=== Classes ==================================================================
+export default class ProfilePage extends Component {
+  constructor(props){
+    super(props);
+    this.firebase = this.props.firebase;
+  }
+
+  sendFile(){
+    var photo = document.getElementById('photo').files[0];
+    console.log(this.firebase.storage)
+    var ref = this.props.firebase.storage().ref('profilePics/test');
+    ref.put(photo).then(()=>{
+      console.log('Uploaded a blob or file!');
     })
   }
+
   render() {
     return (
       <div>
         <UserInfo/>
-        <Map/>
+        <ProfileFeed/>
+        <div className="upload-btn-wrapper">
+          <button className="btn">Upload a file</button>
+          <input id='photo' type="file" name="myfile" />
+        </div>
+        <button onClick={ this.sendFile.bind(this) } className='btn'>Save</button>
       </div>
     );
   }

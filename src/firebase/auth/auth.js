@@ -1,13 +1,12 @@
 export default class Auth{
-  constructor(firebase) {
-    this.firebase = firebase;
+  constructor(){
+    this.test = "test"
   }
 
-  signUp({ email,password,errorHandler,successHandler }) {
-    this.firebase.auth().createUserWithEmailAndPassword(email, password)
+  signUp({ email, password, errorHandler, successHandler,firebase }) {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(function(){
         successHandler();
-        console.log("cool");
       })
       .catch(function(error) {
         if(error)
@@ -15,8 +14,8 @@ export default class Auth{
       });
   }
 
-  signIn({email,password,errorHandler,successHandler}) {
-    this.firebase.auth().signInWithEmailAndPassword(email, password)
+  signIn({email, password, errorHandler, successHandler, firebase}) {
+    firebase.auth().signInWithEmailAndPassword(email, password)
     .then(()=>{
       successHandler();
     })
@@ -26,8 +25,8 @@ export default class Auth{
     })
   }
 
-  signOut({sucessHandler , erroHandler}) {
-    this.firebase.auth().signOut().then(function() {
+  signOut({sucessHandler , erroHandler, firebase}) {
+    firebase.auth().signOut().then(function() {
       //Do signout stuff
     }).catch(function(error) {
       // An error happened.

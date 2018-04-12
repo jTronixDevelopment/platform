@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 
-import { FormGroup, Form, Input ,Label ,Container, Card, Button, CardHeader, CardBody,
-  CardTitle, FormFeedback, FormText } from 'reactstrap';
+import { FormGroup, Form, Input ,Label ,Container, Card,
+  Button, CardHeader, CardBody, FormFeedback } from 'reactstrap';
 
 import { Link, Redirect } from 'react-router-dom';
+
+import Auth from './../../firebase/Auth/Auth';
 
 export default class App extends Component {
   constructor(auth){
     super(auth);
-    this.auth = this.props.auth;
+    this.auth = new Auth();
     this.state={
       signedUp : false
     }
@@ -16,14 +18,12 @@ export default class App extends Component {
 
   createUser() {
     var { email , password, passwordConfirm } = this.getUserInfo();
-
+    console.log(this.isValidEmail(email),this.isValidPassword(password,passwordConfirm))
     if(this.isValidEmail(email)&&this.isValidPassword(password,passwordConfirm)){
       console.log("Valid Sign Up")
       this.auth.signUp(this.getUserInfo())
     } else {
-      // Check Email
       this.checkEmail(email)
-      // Check Password
       this.checkPassWord(password,passwordConfirm)
     }
   }
@@ -34,7 +34,8 @@ export default class App extends Component {
       password : this.signUpPassword.value,
       passwordConfirm : this.signUpPassword.value,
       errorHandler : this.errorHandler.bind(this),
-      successHandler : this.successHandler.bind(this)
+      successHandler : this.successHandler.bind(this),
+      firebase: this.props.firebase
     }
   }
   // Email verification
@@ -60,7 +61,7 @@ export default class App extends Component {
   }
 
   isValidEmail(email){
-    return /^\w+([-+.']\ w+)*@\w+([-. ]\w+)*\.\w+([-. ]\w+)*$/.test(email)?true:false
+    return /^\w+([-+.'] w+)*@\w+([-. ]\w+)*\.\w+([-. ]\w+)*$/.test(email)?true:false
   }
 
   // Password verification
@@ -142,12 +143,11 @@ export default class App extends Component {
     this.signUpPassword = document.getElementById('signUpPassword');
     this.signUpPasswordConfirm = document.getElementById('signUpPasswordConfirm');
     this.signUpEmail = document.getElementById('signUpEmail');
-    this.passWordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    this.passWordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})");
   }
 
   render() {
     if (this.state.signedUp === true) {
-      console.log('in render')
       return ( <Redirect to='/signin' push/> )
     }
     return (
