@@ -8,7 +8,7 @@ export default class Auth{
       .then(function(){
         successHandler();
       })
-      .catch(function(error) {
+      .catch(function(error) { 
         if(error)
           errorHandler(error)
       });
