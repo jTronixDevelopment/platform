@@ -4,18 +4,12 @@ import './style.css';
 
 import { Link } from 'react-router-dom';
 
-import FeedIcon from './../icons/feed.png';
-import PersonIcon from './../icons/person.png';
-import MessageIcon from './../icons/message.png';
-import SearcIcon from './../icons/search.png';
+import { SearchIcon, MessageIcon, FeedIcon, PersonIcon } from './../../imgs/icons.js';
 
-class Footer extends Component {
+export default class Footer extends Component {
   constructor(props){
     super(props);
     this.state = props;
-  }
-
-  componentDidMount(){
   }
 
   render() {
@@ -31,11 +25,9 @@ class Footer extends Component {
           <img className='nav-img' src={MessageIcon} alt='messages'/>
         </Link>
         <Link to='./search' className="nav-item">
-          <img className='nav-img' src={SearcIcon} alt='search'/>
+          <img className='nav-img' src={SearchIcon} alt='search'/>
         </Link>
       </div>
     );
   }
 }
-
-export default Footer;

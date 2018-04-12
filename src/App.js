@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
+
+//=== Modules ==================================================================
 import { Route, Switch } from 'react-router-dom';
 
-import SignInWidget from './components/signInWidget/signInWidget';
-import SignUpWidget from './components/signUpWidget/signUpWidget';
+//=== Pages ====================================================================
+import SignInWidget from './Pages/SignIn/signInWidget';
+import SignUpWidget from './Pages/SignUp/signUpWidget';
+import Profile from './Pages/Profile/profile';
+import Places from './Pages/Places/places';
+import Search from './Pages/Search/Search';
 
-import Profile from './components/profile/profile';
-import Places from './components/places/places';
-import Search from './components/search/search';
-
+//=== Components ===============================================================
 import Header from './components/header/header';
 import Navigation from './components/navigation/navigation';
 
-import FeedItem from './components/places/places';
+import FeedItem from './Pages/Places/places';
 
 import { Firebase } from './firebase/setup';
 
@@ -27,9 +30,6 @@ export default class App extends Component {
     this.firebase = firebase;
   }
 
-  componentDidMount(){
-  }
-
   render() {
     return (
       <div>
@@ -37,20 +37,18 @@ export default class App extends Component {
             <Route path='*' component={ Header }/>
         </Switch>
         <Switch>
-            <Route exact path='/' render={ props => ( <SignInWidget firebase={this.firebase} saveFireBase={this.saveFireBase.bind(this)}/> )}/>
-            <Route path='/signup' render={ props => ( <SignUpWidget firebase={this.firebase}  saveFireBase={this.saveFireBase.bind(this)}/> )} />
-            <Route path='/signin' render={ props => ( <SignInWidget firebase={this.firebase}  saveFireBase={this.saveFireBase.bind(this)}/> )} />
-            <Route path='/places' component={ Places }/>
-            <Route path='/search' component={ Search }/>
-            <Route path='/profile' render={ props => ( <Profile firebase={this.firebase} saveFireBase={this.saveFireBase.bind(this)} /> )}/>
+          <Route exact path='/' render={ props => ( <SignInWidget firebase={this.firebase} saveFireBase={this.saveFireBase.bind(this)}/> )}/>
+          <Route path='/signup' render={ props => ( <SignUpWidget firebase={this.firebase}  saveFireBase={this.saveFireBase.bind(this)}/> )} />
+          <Route path='/signin' render={ props => ( <SignInWidget firebase={this.firebase}  saveFireBase={this.saveFireBase.bind(this)}/> )} />
+          <Route path='/profile' render={ props => ( <Profile firebase={this.firebase} saveFireBase={this.saveFireBase.bind(this)} /> )}/>
+          <Route path='/places' component={ Places }/>
+          <Route path='/search' component={ Search }/>
         </Switch>
         <Switch>
           <Route exact path='/places' component={ FeedItem }/>
         </Switch>
         <Switch>
-          <Route path='/places' component={ Navigation }/>
-          <Route path='/search' component={ Navigation }/>
-          <Route path='/profile' component={ Navigation }/>
+          <Route path='*' component={ Navigation }/>
         </Switch>
       </div>
     );

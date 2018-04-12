@@ -1,7 +1,4 @@
 export default class Auth{
-  constructor(){
-    this.test = "test"
-  }
 
   signUp({ email, password, errorHandler, successHandler,firebase }) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -26,10 +23,10 @@ export default class Auth{
   }
 
   signOut({sucessHandler , erroHandler, firebase}) {
-    firebase.auth().signOut().then(function() {
-      //Do signout stuff
-    }).catch(function(error) {
-      // An error happened.
+    firebase.auth().signOut()
+    .then(()=>{
+    })
+    .catch((error)=>{
     });
   }
 
