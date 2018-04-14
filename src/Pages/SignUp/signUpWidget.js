@@ -10,7 +10,7 @@ import Auth from './../../firebase/Auth/Auth';
 export default class App extends Component {
   constructor(auth){
     super(auth);
-    this.auth = new Auth(); 
+    this.auth = new Auth();
     this.state={
       signedUp : false
     }

@@ -1,16 +1,17 @@
 var Firebase  = require("firebase/app");
 require("firebase/auth");
-require("firebase/database");
 require("firebase/firestore");
 require("firebase/messaging");
 require("firebase/functions");
 require("firebase/storage");
 
 Firebase.initializeApp({
-  apiKey: "AIzaSyAuYLb2L0qafKyxZdkUw1qVp46ffpig_EY",
-  authDomain: "mongotest-11a55.firebaseapp.com",
-  databaseURL: "https://mongotest-11a55.firebaseio.com/",
-  storageBucket: "mongotest-11a55.appspot.com"
+  apiKey: "AIzaSyCn1b75MQ45nc3fhcNBkVJbHcFwJvqgcmA",
+  authDomain: "platrom-7b0e2.firebaseapp.com",
+  databaseURL: "https://platrom-7b0e2.firebaseio.com",
+  projectId: "platrom-7b0e2",
+  storageBucket: "",
+  messagingSenderId: "459800981318"
 });
 
 export { Firebase };
