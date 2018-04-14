@@ -6,11 +6,12 @@ import { FormGroup, Form, Input ,Label ,Container, Card,
 import { Link, Redirect } from 'react-router-dom';
 
 import Auth from './../../firebase/Auth/Auth';
+import Auth from './../../firebase/Database/Database';
 
 export default class App extends Component {
   constructor(auth){
     super(auth);
-    this.auth = new Auth(); 
+    this.auth = new Auth();
     this.state={
       signedUp : false
     }
@@ -38,6 +39,7 @@ export default class App extends Component {
       firebase: this.props.firebase
     }
   }
+
   // Email verification
 
   checkEmail(email){
@@ -111,6 +113,12 @@ export default class App extends Component {
     return (p1 === p2)&&(p1!== '')&&this.passWordRegex.test(p1)
   }
 
+  // username verification
+
+  isValidUserName(){
+
+  }
+
   // Server Errors
 
   showServerEmailError(){
@@ -156,6 +164,13 @@ export default class App extends Component {
           <CardHeader>Sign Up</CardHeader>
           <CardBody>
             <Form>
+              <FormGroup>
+                <Label for="email">Desired Username</Label>
+                <Input id='signUpUsername' type="text" autoComplete='on' name="Username" placeholder="Desired Username" />
+                <FormFeedback invalid=''>Username is already in use</FormFeedback>
+                <FormFeedback valid>Username is available</FormFeedback>
+              </FormGroup>
+
               <FormGroup>
                 <Label for="email">Email</Label>
                 <Input id='signUpEmail' type="email" autoComplete='on' name="email" placeholder="Email Address" />

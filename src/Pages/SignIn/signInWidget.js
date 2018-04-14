@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { FormGroup, Form, FormFeedback, Input ,Label ,Container,
   Card, Button, CardHeader, CardBody, CardTitle } from 'reactstrap';
 
-import { FBLogInIcon } from './../../imgs/icons.js';
+import { FacebookIcon } from './../../imgs/icons.js';
 
 import Auth from './../../Classes/Firebase/Auth/Auth';
 
@@ -29,7 +29,7 @@ export default class App extends Component {
 
   signInUser(){
     if(this.isValidEmail(this.signInEmail.value)){
-      console.log('is Valid')
+      console.log('is Valid email')
       this.showEmailSucess();
       this.auth.signIn(this.getSignInInfo())
     } else {
@@ -69,8 +69,34 @@ export default class App extends Component {
     this.setState({ loggedIn:true })
   }
 
+  signInWithFacebook(){
+    this.auth.signInWithFacebook({
+      errorHandler: this.errorHandler.bind(this),
+      successHandler: this.successHandler.bind(this),
+      firebase: this.props.firebase
+    })
+  }
+
+  checkAuthStatus(){
+    console.log('checking')
+  }
+
   componentDidMount(){
     this.signInEmail = document.getElementById('signInEmail');
+    console.log('in')
+    this.checkAuthStatus.bind(this)
+    this.props.firebase.auth().getRedirectResult().then(function(result) {
+      if (result.credential) {
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        var token = result.credential.accessToken;
+        // ...
+      }
+      // The signed-in user info.
+      var user = result.user;
+    }).catch(function(error) {
+        // ...
+        console.log(error)
+    });
   }
 
   render() {
@@ -100,10 +126,12 @@ export default class App extends Component {
             <p className='text-center'>
             -or-
             </p>
-            <Button block className='fb-icon text-center'>
-              <img alt='fbLogIn' className='icon' src={ FBLogInIcon }/>
-              Login With Facebook
-            </Button>
+            <div className='text-center'>
+              <Button className='fb-icon' onClick={this.signInWithFacebook.bind(this)}>
+                <img alt='fbLogIn' className='icon' src={ FacebookIcon }/>
+                <b> Login With Facebook</b>
+              </Button>
+            </div>
             <hr/>
             <p>Not a member?<Link to={'/signup'}>Click here!</Link></p>
           </CardBody>
