@@ -21,7 +21,7 @@ export default class Footer extends Component {
         <Link to='./profile' className="nav-item">
           <img className='nav-img' src={PersonIcon} alt='profile'/>
         </Link>
-        <Link to='./test' className="nav-item">
+        <Link to='./messages' className="nav-item">
           <img className='nav-img' src={MessageIcon} alt='messages'/>
         </Link>
         <Link to='./search' className="nav-item">
