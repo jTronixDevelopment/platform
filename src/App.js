@@ -11,12 +11,12 @@ import Places from './Pages/Places/places';
 import Search from './Pages/Search/Search';
 
 //=== Components ===============================================================
-import Header from './components/header/header';
-import Navigation from './components/navigation/navigation';
+import Header from './Components/header/header';
+import Navigation from './Components/navigation/navigation';
 
 import FeedItem from './Pages/Places/places';
 
-import { Firebase } from './firebase/setup';
+import { Firebase } from './Classes/Firebase/setup';
 
 // import { LOG_IN } from './redux/actions/authactions'
 
@@ -43,9 +43,6 @@ export default class App extends Component {
           <Route path='/profile' render={ props => ( <Profile firebase={this.firebase} saveFireBase={this.saveFireBase.bind(this)} /> )}/>
           <Route path='/places' component={ Places }/>
           <Route path='/search' component={ Search }/>
-        </Switch>
-        <Switch>
-          <Route exact path='/places' component={ FeedItem }/>
         </Switch>
         <Switch>
           <Route path='*' component={ Navigation }/>

@@ -5,12 +5,12 @@ import { FormGroup, Form, Input ,Label ,Container, Card,
 
 import { Link, Redirect } from 'react-router-dom';
 
-import Auth from './../../firebase/Auth/Auth';
+import Auth from './../../Classes/Firebase/Auth/Auth';
 
 export default class App extends Component {
   constructor(auth){
     super(auth);
-    this.auth = new Auth(); 
+    this.auth = new Auth();
     this.state={
       signedUp : false
     }

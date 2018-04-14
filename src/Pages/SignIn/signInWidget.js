@@ -5,7 +5,7 @@ import { FormGroup, Form, FormFeedback, Input ,Label ,Container,
 
 import { FBLogInIcon } from './../../imgs/icons.js';
 
-import Auth from './../../firebase/Auth/Auth';
+import Auth from './../../Classes/Firebase/Auth/Auth';
 
 import { Link, Redirect } from 'react-router-dom';
 
