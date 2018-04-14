@@ -7,15 +7,14 @@ import { Route, Switch } from 'react-router-dom';
 import SignInWidget from './Pages/SignIn/signInWidget';
 import SignUpWidget from './Pages/SignUp/signUpWidget';
 import Profile from './Pages/Profile/profile';
-import Places from './Pages/Places/places';
+import Feed from './Pages/Feed/Feed';
 import Search from './Pages/Search/Search';
+import Messages from './Pages/Messages/Messages';
 import Testing from './Pages/Testing/testing';
 
 //=== Components ===============================================================
 import Header from './Components/header/header';
 import Navigation from './Components/navigation/navigation';
-
-import FeedItem from './Pages/Places/places';
 
 import { Firebase } from './Classes/Firebase/setup';
 
@@ -43,8 +42,9 @@ export default class App extends Component {
           <Route path='/signin' render={ props => ( <SignInWidget firebase={this.firebase}  saveFireBase={this.saveFireBase.bind(this)}/> )} />
           <Route path='/profile' render={ props => ( <Profile firebase={this.firebase} saveFireBase={this.saveFireBase.bind(this)} /> )}/>
           <Route path='/testing' render={ props => ( <Testing firebase={this.firebase} saveFireBase={this.saveFireBase.bind(this)} /> )}/>
-          <Route path='/places' component={ Places }/>
+          <Route path='/places' component={ Feed }/>
           <Route path='/search' component={ Search }/>
+          <Route path='/messages' component={ Messages }/>
         </Switch>
         <Switch>
           <Route path='*' component={ Navigation }/>

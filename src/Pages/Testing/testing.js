@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import { FormGroup, Form, Input ,Label ,Container, Card,
   Button, CardHeader, CardBody, FormFeedback } from 'reactstrap';
 
-import Auth from './../../firebase/Auth/Auth';
-import DB from './../../firebase/Database/Database';
+import Auth from './../../Classes/Firebase/Auth/Auth';
+import DB from './../../Classes/Firebase/Database/Database';
 
 export default class App extends Component {
   constructor(auth){

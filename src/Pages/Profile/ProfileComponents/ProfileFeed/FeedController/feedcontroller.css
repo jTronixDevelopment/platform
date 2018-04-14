@@ -7,6 +7,8 @@ ul.flex-grid {
 }
 li.col {
   flex: 1;
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 
 li>img.feed-controller-icon{

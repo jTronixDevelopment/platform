@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './profile.css';
 
 //=== Classes ==================================================================
-// import Storage from './../../firebase/CloudStorage/CloudStorage';
+import Storage from './../../Classes/Firebase/CloudStorage/CloudStorage';
 
 //=== Components ===============================================================
 import UserInfo from './ProfileComponents/UserInfo/UserInfo';

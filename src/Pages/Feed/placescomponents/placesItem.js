@@ -6,12 +6,14 @@ import './styles.css';
 import Image from './image.png';
 import Like from './like.png';
 import Dislike from './dislike.png';
+
+import Thumbnail from './../../../Components/Thumbnail/Thumbnail'
 class App extends Component {
 
   render() {
     return (
-        <Card>
-          <CardHeader>{ this.props.userName }</CardHeader>
+        <Card className='feed-item'>
+          <Thumbnail src = "https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-1/16196015_10154888128487744_6901111466535510271_n.png?_nc_cat=0&oh=d130135c52915fd36bd4d7db5dbed825&oe=5B685759" title="User"/>
           <CardImg style={{"borderRadius":0}} src={Image}/>
           <CardBody>
             <CardTitle></CardTitle>
